@@ -31,7 +31,7 @@ async function OwnerTopupToken(driver) {
   );
   await driver.executeScript("arguments[0].click();", btnCheckPayment);
   console.log("Create Payment Topup Token Success!");
-  driver.quit();
+  //   driver.quit();
 }
 
 export { OwnerTopupToken };

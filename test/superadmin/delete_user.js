@@ -22,7 +22,7 @@ async function DeleteOwner(driver) {
   await driver.findElement(By.id("form-delete")).submit();
   await driver.sleep(5 * TIME_1000);
   console.log("Delete Owner Success!");
-  driver.quit();
+  // driver.quit();
 }
 
 async function DeletePartner(driver) {
@@ -44,7 +44,7 @@ async function DeletePartner(driver) {
   await driver.findElement(By.id("form-delete")).submit();
   await driver.sleep(5 * TIME_1000);
   console.log("Delete Partner Success!");
-  driver.quit();
+  // driver.quit();
 }
 
 export { DeleteOwner, DeletePartner };

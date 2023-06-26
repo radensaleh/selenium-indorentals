@@ -39,7 +39,7 @@ async function AcceptPartner(driver) {
     .click();
   console.log("Accept Partner Success!");
   await driver.sleep(TIME_1000);
-  driver.quit();
+  // driver.quit();
 }
 
 export { AcceptPartner };

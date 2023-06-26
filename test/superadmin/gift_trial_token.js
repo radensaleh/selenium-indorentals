@@ -18,7 +18,7 @@ async function GiftTrialToken(driver) {
   await driver.findElement(By.id("form-trial")).submit();
   await driver.sleep(2000);
   console.log("Gift Trial Token Success!");
-  driver.quit();
+  // driver.quit();
 }
 
 export { GiftTrialToken };

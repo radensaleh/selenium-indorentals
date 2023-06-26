@@ -2,7 +2,7 @@ import { By } from "selenium-webdriver";
 import fs from "fs";
 const TIME_1000 = 1000;
 
-async function RegisterBorrower(driver) {
+async function RegisterBorrower(driver, slugLink) {
   let url;
   if (process.env.MODE_LOCAL) {
     url = process.env.URL_LOCAL;
@@ -11,7 +11,7 @@ async function RegisterBorrower(driver) {
   }
 
   // set link register
-  await driver.get(`${url}/enZ36lAS`);
+  await driver.get(`${url}/${slugLink}`);
 
   // modal start
   await driver.findElement(By.xpath("//a[contains(@href,'#')]")).click();
@@ -84,7 +84,7 @@ async function RegisterBorrower(driver) {
   await driver.sleep(TIME_1000);
   console.log("Registration Borrower by Link Success!");
   await driver.sleep(TIME_1000);
-  driver.quit();
+  // driver.quit();
 }
 
 export { RegisterBorrower };

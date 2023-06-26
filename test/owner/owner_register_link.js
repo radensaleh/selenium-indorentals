@@ -4,14 +4,14 @@ import { time } from "console";
 
 const TIME_1000 = 1000;
 
-async function RegisterOwnerLink(driver) {
+async function RegisterOwnerLink(driver, slugLink) {
   let url;
   if (process.env.MODE_LOCAL) {
     url = process.env.URL_LOCAL;
   } else {
     url = process.env.URL_STAGING;
   }
-  await driver.get(`${url}/enZ36lAS`);
+  await driver.get(`${url}/${slugLink}`);
   await driver.findElement(By.xpath("//a[contains(@href, '#')]")).click();
 
   await driver.sleep(TIME_1000);

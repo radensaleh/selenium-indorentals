@@ -1,16 +1,27 @@
 import { By, Key } from "selenium-webdriver";
 import "dotenv/config";
 
-async function Login(driver) {
-  // super admin
-  //   let email = process.env.SU_EMAIL;
-  //   let password = process.env.SU_PASSWORD;
+async function Login(driver, role) {
+  // set role credentials
+  let email, password;
+  switch (role) {
+    case "admin":
+      email = process.env.SU_EMAIL;
+      password = process.env.SU_PASSWORD;
+      break;
+    case "partner":
+      email = process.env.PARTNER_EMAIL;
+      password = process.env.PO_PASSWORD;
+      break;
+    case "owner":
+      email = process.env.OWNER_EMAIL;
+      password = process.env.PO_PASSWORD;
+      break;
+    default:
+      console.log("type error");
+  }
 
-  // owner & partner
-  //   let email = process.env.PARTNER_EMAIL;
-  let email = process.env.OWNER_EMAIL;
-  let password = process.env.PO_PASSWORD;
-
+  // set url local or staging
   let url;
   if (process.env.MODE_LOCAL) {
     url = process.env.URL_LOCAL;

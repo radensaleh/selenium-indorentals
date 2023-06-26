@@ -31,8 +31,11 @@ async function Index() {
     .setChromeOptions(chromeOptions)
     .build();
 
-  // Login
-  // await Login(driver);
+  /**
+   * Login
+   * Type: admin, partner, owner
+   */
+  // await Login(driver, "admin");
 
   /**
    * Super Admin
@@ -60,18 +63,18 @@ async function Index() {
   // await CreditHistoryBorrower(driver);
   // await CheckBankBorrower(driver);
   // await ReportBorrower(driver);
-  // await RegisterOwnerLink(driver);
+  // await RegisterOwnerLink(driver, "slugLink"); //slugLink
 
   /**
    * Borrower
    */
-  // await RegisterBorrower(driver);
+  // await RegisterBorrower(driver, "slugLink"); //slugLink
 
   /**
    * Registration
    * true: owner, false: partner
    */
-  // await Registration(driver, false);
+  // await Registration(driver, true);
 }
 
 Index();

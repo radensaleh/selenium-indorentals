@@ -31,7 +31,7 @@ async function AcceptBorrower(driver) {
     .click();
   console.log("Accept Borrower Success!");
   await driver.sleep(TIME_1000);
-  driver.quit();
+  // driver.quit();
 }
 
 export { AcceptBorrower };
