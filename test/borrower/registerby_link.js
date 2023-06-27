@@ -42,9 +42,7 @@ async function RegisterBorrower(driver, slugLink) {
 
   await driver.sleep(TIME_1000);
   // select file upload
-  await driver
-    .findElement(By.id("ktp"))
-    .sendKeys("/Users/radensaleh/Documents/Image Testing/ktp.jpg");
+  await driver.findElement(By.id("ktp")).sendKeys(process.env.PATH_KTP);
 
   await driver.sleep(TIME_1000);
   var submitKTP = await driver.findElement(By.id("buttonSubmit"));

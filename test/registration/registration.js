@@ -48,9 +48,7 @@ async function Registration(driver, owner) {
 
   await driver.sleep(TIME_1000);
 
-  await driver
-    .findElement(By.id("ktp"))
-    .sendKeys("/Users/radensaleh/Documents/Image Testing/ktp.jpg");
+  await driver.findElement(By.id("ktp")).sendKeys(process.env.PATH_KTP);
 
   //   if (!owner) {
   //     // live capture KTP
@@ -70,7 +68,7 @@ async function Registration(driver, owner) {
   //     // select file upload
   //     await driver
   //       .findElement(By.id("ktp"))
-  //       .sendKeys("/Users/radensaleh/Documents/Image Testing/ktp.jpg");
+  //       .sendKeys(process.env.PATH_KTP);
   //   }
 
   await driver.sleep(1 * TIME_1000);
