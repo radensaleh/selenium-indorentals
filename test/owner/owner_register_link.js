@@ -4,6 +4,19 @@ import { time } from "console";
 
 const TIME_1000 = 1000;
 
+function readFileAsBase64(filePath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, (error, data) => {
+      if (error) {
+        reject(error);
+      } else {
+        const base64String = data.toString("base64");
+        resolve(base64String);
+      }
+    });
+  });
+}
+
 async function RegisterOwnerLink(driver, slugLink) {
   let url;
   if (process.env.MODE_LOCAL) {
@@ -24,17 +37,33 @@ async function RegisterOwnerLink(driver, slugLink) {
   var capture = await driver.findElement(By.id("cameraButton"));
   driver.executeScript("arguments[0].click();", capture);
 
-  await driver.sleep(TIME_1000);
-  var base64_txt = fs
-    .readFileSync("./borrower/base64_liveness.txt")
-    .toString("utf-8");
-  var selfie = await driver.findElement(By.id("selfie"));
-  driver.executeScript(`arguments[0].value='${base64_txt}'`, selfie);
+  // await driver.sleep(TIME_1000);
+  // var base64_txt = fs
+  //   .readFileSync("./borrower/base64_liveness.txt")
+  //   .toString("utf-8");
+  // var selfie = await driver.findElement(By.id("selfie"));
+  // driver.executeScript(`arguments[0].value='${base64_txt}'`, selfie);
+
+  await driver.sleep(2 * TIME_1000);
+  let base64_txt;
+  let filePath = process.env.PATH_SELFIE;
+  readFileAsBase64(filePath)
+    .then((base64String) => {
+      base64_txt = base64String;
+      // console.log(base64String);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  await driver.sleep(2 * TIME_1000);
+  let base64 = await driver.findElement(By.xpath("//textarea[@id='selfie']"));
+  await driver.executeScript(`arguments[0].value='${base64_txt}'`, base64);
 
   await driver.sleep(TIME_1000);
   await driver.findElement(By.id("buttonSubmit")).click();
 
-  await driver.sleep(TIME_1000);
+  await driver.sleep(2 * TIME_1000);
   await driver.findElement(By.id("ktp")).sendKeys(process.env.PATH_KTP);
 
   await driver.sleep(TIME_1000);
