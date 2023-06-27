@@ -35,7 +35,7 @@ async function RegisterOwnerLink(driver, slugLink) {
 
   await driver.sleep(2 * TIME_1000);
   var capture = await driver.findElement(By.id("cameraButton"));
-  driver.executeScript("arguments[0].click();", capture);
+  await driver.executeScript("arguments[0].click();", capture);
 
   // await driver.sleep(TIME_1000);
   // var base64_txt = fs
@@ -44,10 +44,10 @@ async function RegisterOwnerLink(driver, slugLink) {
   // var selfie = await driver.findElement(By.id("selfie"));
   // driver.executeScript(`arguments[0].value='${base64_txt}'`, selfie);
 
-  await driver.sleep(2 * TIME_1000);
+  await driver.sleep(TIME_1000);
   let base64_txt;
   let filePath = process.env.PATH_SELFIE;
-  readFileAsBase64(filePath)
+  await readFileAsBase64(filePath)
     .then((base64String) => {
       base64_txt = base64String;
       // console.log(base64String);
@@ -56,7 +56,7 @@ async function RegisterOwnerLink(driver, slugLink) {
       console.error(error);
     });
 
-  await driver.sleep(2 * TIME_1000);
+  await driver.sleep(TIME_1000);
   let base64 = await driver.findElement(By.xpath("//textarea[@id='selfie']"));
   await driver.executeScript(`arguments[0].value='${base64_txt}'`, base64);
 

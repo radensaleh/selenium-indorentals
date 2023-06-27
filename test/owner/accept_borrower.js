@@ -1,6 +1,16 @@
 import { By } from "selenium-webdriver";
 const TIME_1000 = 1000;
 
+async function getEndDate() {
+  let date = new Date();
+  let mm = date.getMonth() + 1;
+  let dd = date.getDate() + 3;
+  let yyyy = date.getFullYear();
+  let endDate = `${dd}/${mm}/${yyyy}`;
+
+  return endDate;
+}
+
 async function AcceptBorrower(driver) {
   driver.executeScript("scroll(0, 250)");
   await driver.sleep(TIME_1000);
@@ -21,7 +31,9 @@ async function AcceptBorrower(driver) {
   driver.executeScript("arguments[0].click();", modalAccept);
 
   await driver.sleep(TIME_1000);
-  await driver.findElement(By.id("endDate")).sendKeys("30/06/2023");
+  let endDate = await getEndDate();
+
+  await driver.findElement(By.id("endDate")).sendKeys(endDate);
   await driver
     .findElement(
       By.css(

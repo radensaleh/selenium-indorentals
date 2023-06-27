@@ -51,14 +51,14 @@ async function Registration(driver, owner) {
   await driver.findElement(By.xpath("//a[@id='buttonConfirm']")).click();
 
   // btn open capture camera
-  await driver.sleep(2 * TIME_1000);
+  await driver.sleep(TIME_1000);
   let capture = await driver.findElement(By.id("cameraButton"));
   await driver.executeScript("arguments[0].click();", capture);
 
-  await driver.sleep(2 * TIME_1000);
+  await driver.sleep(TIME_1000);
   let base64_txt;
   let filePath = process.env.PATH_SELFIE;
-  readFileAsBase64(filePath)
+  await readFileAsBase64(filePath)
     .then((base64String) => {
       base64_txt = base64String;
       // console.log(base64String);
@@ -67,7 +67,7 @@ async function Registration(driver, owner) {
       console.error(error);
     });
 
-  await driver.sleep(2 * TIME_1000);
+  await driver.sleep(TIME_1000);
   let base64 = await driver.findElement(By.xpath("//textarea[@id='selfie']"));
   await driver.executeScript(`arguments[0].value='${base64_txt}'`, base64);
 
