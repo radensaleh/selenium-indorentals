@@ -35,7 +35,7 @@ async function Index() {
    * Login
    * Type: admin, partner, owner
    */
-  await Login(driver, "owner");
+  // await Login(driver, "owner");
 
   /**
    * Super Admin
@@ -62,7 +62,7 @@ async function Index() {
   // await CommentBorrower(driver);
   // await CreditHistoryBorrower(driver);
   // await CheckBankBorrower(driver);
-  await ReportBorrower(driver);
+  // await ReportBorrower(driver);
   // await RegisterOwnerLink(driver, "slugLink"); //slugLink
 
   /**
@@ -74,7 +74,7 @@ async function Index() {
    * Registration
    * true: owner, false: partner
    */
-  // await Registration(driver, true);
+  // await Registration(driver, false);
 }
 
 Index();

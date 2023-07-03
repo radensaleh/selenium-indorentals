@@ -1,12 +1,8 @@
 import { By, Key } from "selenium-webdriver";
+import UrlCheck from "../utils/url_check.js";
 
 async function OwnerTopupToken(driver) {
-  let url;
-  if (process.env.MODE_LOCAL) {
-    url = process.env.URL_LOCAL;
-  } else {
-    url = process.env.URL_STAGING;
-  }
+  let url = UrlCheck();
 
   await driver.get(`${url}/owner/topup`);
   await driver

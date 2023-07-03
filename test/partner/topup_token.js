@@ -1,17 +1,21 @@
 import { By, Key } from "selenium-webdriver";
+import UrlCheck from "../utils/url_check.js";
+import OSFunction from "../utils/os_function.js";
 
 async function PartnerTopupToken(driver) {
-  let url;
-  if (process.env.MODE_LOCAL) {
-    url = process.env.URL_LOCAL;
-  } else {
-    url = process.env.URL_STAGING;
-  }
+  let url = UrlCheck();
 
   await driver.get(`${url}/partner/topup`);
-  await driver
-    .findElement(By.id("token"))
-    .sendKeys(Key.chord(Key.COMMAND, "a"));
+  let os = await OSFunction();
+  if (os === "MacOS") {
+    await driver
+      .findElement(By.id("token"))
+      .sendKeys(Key.chord(Key.COMMAND, "a"));
+  } else {
+    await driver
+      .findElement(By.id("token"))
+      .sendKeys(Key.chord(Key.CONTROL, "a"));
+  }
   await driver.findElement(By.id("token")).sendKeys("2");
   await driver.findElement(By.id("BRI")).click();
 

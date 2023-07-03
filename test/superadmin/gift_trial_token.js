@@ -1,12 +1,8 @@
 import { By } from "selenium-webdriver";
+import UrlCheck from "../utils/url_check.js";
 
 async function GiftTrialToken(driver) {
-  let url;
-  if (process.env.MODE_LOCAL) {
-    url = process.env.URL_LOCAL;
-  } else {
-    url = process.env.URL_STAGING;
-  }
+  let url = UrlCheck();
 
   await driver.get(`${url}/super-admin/owner`);
   await driver.findElement(By.xpath("//a[contains(@href,'#')]")).click();

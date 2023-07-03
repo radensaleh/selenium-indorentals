@@ -1,29 +1,12 @@
 import { By } from "selenium-webdriver";
-import fs from "fs";
-import { time } from "console";
+import ReadFileAsBase64 from "../utils/base64.js";
+import UrlCheck from "../utils/url_check.js";
 
 const TIME_1000 = 1000;
 
-function readFileAsBase64(filePath) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, (error, data) => {
-      if (error) {
-        reject(error);
-      } else {
-        const base64String = data.toString("base64");
-        resolve(base64String);
-      }
-    });
-  });
-}
-
 async function RegisterOwnerLink(driver, slugLink) {
-  let url;
-  if (process.env.MODE_LOCAL) {
-    url = process.env.URL_LOCAL;
-  } else {
-    url = process.env.URL_STAGING;
-  }
+  let url = UrlCheck();
+
   await driver.get(`${url}/${slugLink}`);
   await driver.findElement(By.xpath("//a[contains(@href, '#')]")).click();
 
@@ -47,7 +30,7 @@ async function RegisterOwnerLink(driver, slugLink) {
   await driver.sleep(TIME_1000);
   let base64_txt;
   let filePath = process.env.PATH_SELFIE;
-  await readFileAsBase64(filePath)
+  await ReadFileAsBase64(filePath)
     .then((base64String) => {
       base64_txt = base64String;
       // console.log(base64String);

@@ -1,15 +1,10 @@
 import { By } from "selenium-webdriver";
-import "dotenv/config";
+import UrlCheck from "../utils/url_check.js";
 
 const TIME_1000 = 1000;
 
 async function DeleteOwner(driver) {
-  let url;
-  if (process.env.MODE_LOCAL) {
-    url = process.env.URL_LOCAL;
-  } else {
-    url = process.env.URL_STAGING;
-  }
+  let url = UrlCheck();
 
   await driver.sleep(TIME_1000);
   await driver.get(`${url}/super-admin/owner`);

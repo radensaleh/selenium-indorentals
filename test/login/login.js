@@ -1,5 +1,5 @@
 import { By, Key } from "selenium-webdriver";
-import "dotenv/config";
+import UrlCheck from "../utils/url_check.js";
 
 async function Login(driver, role) {
   // set role credentials
@@ -22,12 +22,7 @@ async function Login(driver, role) {
   }
 
   // set url local or staging
-  let url;
-  if (process.env.MODE_LOCAL) {
-    url = process.env.URL_LOCAL;
-  } else {
-    url = process.env.URL_STAGING;
-  }
+  let url = UrlCheck();
 
   // open url
   await driver.get(`${url}/login`);
