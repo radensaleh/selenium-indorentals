@@ -1,4 +1,5 @@
 import "chromedriver";
+import "dotenv/config";
 import chrome, { Driver } from "selenium-webdriver/chrome.js";
 import { Login } from "./login/login.js";
 import { Registration } from "./registration/registration.js";
