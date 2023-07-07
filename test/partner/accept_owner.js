@@ -14,7 +14,7 @@ async function AcceptOwner(driver) {
     )
     .click();
   await driver.sleep(TIME_1000);
-  await driver.executeScript("scroll(0, 700)");
+  await driver.executeScript("scroll(0, 900)");
   await driver.sleep(2 * TIME_1000);
   await driver
     .findElement(By.xpath("//button[@data-bs-target='#ownerAccepted']"))
